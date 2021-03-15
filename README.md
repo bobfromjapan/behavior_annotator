@@ -23,7 +23,7 @@ frame, behavior
 
 ## dependencies
 
-`pip install "napari[all]" napari_video`
+`pip install "napari[all]" napari_video pandas`
 
 ## how to use
 
