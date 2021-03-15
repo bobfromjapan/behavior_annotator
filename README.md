@@ -1,6 +1,26 @@
 # behavior_annotator
 behavior annotator with napari
 
+The simple tool for animal behavior annotation to create a CSV file that looks like this:
+
+```
+frame, behavior
+1, behaviorA
+2, behaviorA
+3, behaviorA
+4, behaviorA
+..., ...
+98, behaviorA
+99, behaviorA
+100, behaviorB
+101, behaviorB
+102, behaviorB
+..., ...
+```
+
+![image](https://user-images.githubusercontent.com/65654614/111159552-8ffdb400-85dc-11eb-8f0b-db130fcf6125.png)
+
+
 ## dependencies
 
 `pip install "napari[all]" napari_video`
