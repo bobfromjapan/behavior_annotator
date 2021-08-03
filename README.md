@@ -27,6 +27,8 @@ frame, behavior
 
 ## how to use
 
+To start, update `config.yaml` and then execute `python behavior_annotator.py`.
+
 1. Press 'F' key on the frame that a behavior starts to set the start flag.
 
 2. Play the video until a behavior ends.
