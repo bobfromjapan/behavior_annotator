@@ -25,6 +25,10 @@ frame, behavior
 
 `pip install "napari[all]" napari_video pandas`
 
+Or, you can use `requirements.txt` for `pip install -r requirements.txt`.
+
+This `requirements.txt` is created in Windows10, python3.9.2 environment.
+
 ## how to use
 
 To start, update `config.yaml` and then execute `python behavior_annotator.py`.
