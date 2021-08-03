@@ -2,6 +2,7 @@ import napari
 from napari_video.napari_video import VideoReaderNP
 import numpy as np
 import yaml
+import os
 import codecs
 import pandas as pd
 
@@ -10,6 +11,8 @@ with codecs.open("config.yaml", "r", 'utf-8') as yml:
 
 VIDEO_PATH = config["video_path"]
 LABELS = config["labels"]
+
+output_name = os.path.basename(VIDEO_PATH) + "_annotation.csv"
 
 vr = VideoReaderNP(VIDEO_PATH)
 annotations = np.array([LABELS[0]]*len(vr))
@@ -44,7 +47,7 @@ with napari.gui_qt():
                 show_globals()
             else:
                 print(
-                    flag_frame, "to", image_layer._slice_indices[0], "is annotated to ", LABELS[1])
+                    flag_frame, "to", image_layer._slice_indices[0], "are annotated to ", LABELS[1])
                 annotations[flag_frame:image_layer._slice_indices[0]] = LABELS[1]
                 flag_exist = False
         else:
@@ -60,7 +63,7 @@ with napari.gui_qt():
                 show_globals()
             else:
                 print(
-                    flag_frame, "to", image_layer._slice_indices[0], "is annotated to ", LABELS[2])
+                    flag_frame, "to", image_layer._slice_indices[0], "are annotated to ", LABELS[2])
                 annotations[flag_frame:image_layer._slice_indices[0]] = LABELS[2]
                 flag_exist = False
         else:
@@ -86,4 +89,4 @@ with napari.gui_qt():
     @viewer.bind_key('0')
     def save_label(event=None):
         print("save!")
-        pd.DataFrame(annotations).to_csv("annotation.csv")
+        pd.DataFrame(annotations).to_csv(output_name)
