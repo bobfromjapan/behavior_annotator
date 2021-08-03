@@ -1,0 +1,5 @@
+video_path: "path/to/video"
+labels:
+  - undefined
+  - behaviorA
+  - behaviorB

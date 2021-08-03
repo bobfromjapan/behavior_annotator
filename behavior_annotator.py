@@ -1,11 +1,18 @@
 import napari
 from napari_video.napari_video import VideoReaderNP
 import numpy as np
+import yaml
+import codecs
 import pandas as pd
 
-vr = VideoReaderNP("path_to_video/video_name.mp4")
-labels = ["undefined", "behaviorA", "behaviorB"]
-annotations = np.array([labels[0]]*len(vr))
+with codecs.open("config.yaml", "r", 'utf-8') as yml:
+    config = yaml.load(yml, Loader=yaml.SafeLoader)
+
+VIDEO_PATH = config["video_path"]
+LABELS = config["labels"]
+
+vr = VideoReaderNP(VIDEO_PATH)
+annotations = np.array([LABELS[0]]*len(vr))
 
 # global vars
 flag_exist = False
@@ -37,8 +44,8 @@ with napari.gui_qt():
                 show_globals()
             else:
                 print(
-                    flag_frame, "to", image_layer._slice_indices[0], "is annotated to ", labels[1])
-                annotations[flag_frame:image_layer._slice_indices[0]] = labels[1]
+                    flag_frame, "to", image_layer._slice_indices[0], "is annotated to ", LABELS[1])
+                annotations[flag_frame:image_layer._slice_indices[0]] = LABELS[1]
                 flag_exist = False
         else:
             print("need to set the start flag.")
@@ -53,8 +60,8 @@ with napari.gui_qt():
                 show_globals()
             else:
                 print(
-                    flag_frame, "to", image_layer._slice_indices[0], "is annotated to ", labels[2])
-                annotations[flag_frame:image_layer._slice_indices[0]] = labels[2]
+                    flag_frame, "to", image_layer._slice_indices[0], "is annotated to ", LABELS[2])
+                annotations[flag_frame:image_layer._slice_indices[0]] = LABELS[2]
                 flag_exist = False
         else:
             print("need to set the start flag.")
